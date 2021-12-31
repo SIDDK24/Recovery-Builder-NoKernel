@@ -28,10 +28,7 @@ jobs:
 
     steps:
        - name: Checkout
-         uses: actions/checkout@master
-
-       - name: Cleaning Up Runner
-         uses: rokibhasansagar/slimhub_actions@main      
+         uses: actions/checkout@master      
 
        - name: Initializing environment
          run: |
@@ -50,7 +47,8 @@ jobs:
             cd scripts
             bash setup/android_build_env.sh
             sudo apt-get install -y schedtool
-
+            wget https://raw.githubusercontent.com/siddhrsh/slimhub_actions/main/cleanup.sh
+            sudo bash cleanup.sh
             
        - name: Sync recovery source and device tree
          run: |
