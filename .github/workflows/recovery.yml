@@ -31,7 +31,7 @@ jobs:
          uses: rokibhasansagar/slimhub_actions@main
 
        - name: Recovery Compilation
-         uses: SIDDK24/Recovery-Compiler@release
+         uses: SIDDK24/Recovery-Compiler@production
              
        - uses: actions/upload-artifact@v2
          with:
