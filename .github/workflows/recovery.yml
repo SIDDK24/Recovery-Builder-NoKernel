@@ -14,7 +14,7 @@ on:
     types: [started]
 
 env:
-  MANIFEST: repo init --depth=1 -u git@github.com:minimal-manifest-twrp/platform_manifest_twrp_aosp.git
+  MANIFEST: git@github.com:minimal-manifest-twrp/platform_manifest_twrp_aosp.git
   MANIFEST_BRANCH: twrp-12.1
   DEVICE: OP6xT
   DT_LINK: https://github.com/SIDDK24/TWRP_OP6xT.git
