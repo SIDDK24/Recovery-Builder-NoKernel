@@ -38,9 +38,9 @@ jobs:
          uses: rokibhasansagar/slimhub_actions@main
 
        - name: Recovery Compilation
-         uses: SIDDK24/Recovery-Compiler@release
+         uses: SIDDK24/Recovery-Compiler@production
 
-       - name: Uploading SHRP Build
+       - name: Uploading Build
          run: |
               cd ${BuildPath}/out/target/product/${CODENAME}/
               curl -sL https://git.io/file-transfer | sh
