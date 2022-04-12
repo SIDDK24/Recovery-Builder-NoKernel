@@ -1,29 +1,36 @@
-name: Building recovery
-
+name: Recovery CI
 on:
-#  release:
-#    types: [published]
-#  push:
-#    branches:
-#      - master
-#    paths:
-#      - '.config'
-#  schedule:
-#    - cron: 0 8 * * 5
-  watch:
-    types: [started]
-
+  workflow_dispatch:
+    inputs:
+      OFFICIAL_BUILD:
+        description: 'set true if you wanna push Official Build'
+        required: false
 env:
-  MANIFEST: git@github.com:minimal-manifest-twrp/platform_manifest_twrp_aosp.git
-  MANIFEST_BRANCH: twrp-12.1
-  DEVICE: OP6xT
-  DT_LINK: https://github.com/SIDDK24/TWRP_OP6xT.git
-  DT_PATH: device/oneplus/OP6xT
-  TARGET: bootimage
-  TZ: Asia/Kolkata
+  MANIFEST: "https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-12.1"
+  # Recovery Manifest URL with -b branch
+  DT_LINK: "https://github.com/SIDDK24/TWRP_OP6xT.git"
+  # Your Device Tree Link
+  VENDOR: "oneplus"
+  # Your Device's Vendor name as in used inside DT. Example: xiaomi, samsung, asus, etc.
+  CODENAME: "OP6xT"
+  # Your Device's Codename as in used inside DT." Example: nikel, phoenix, ginkgo, etc.
+  KERNEL_LINK: ""
+  # Kernel repo link with optional -b branch. Only for building kernel from source. Ignore if using prebuilt.
+  TARGET: "bootimage"
+  # Set as recoveryimage (or bootimage if no recovery partition avaiable)
+  FLAVOR: "eng"
+  # eng by default, change the variable if you want userdebug
+  SOURCE: "twrp"
+  # Set as omni (or twrp if using v3_11.0)
+  EXTRA_CMD: ""
+  # For qualcomm FDE devices put git clone https://github.com/omnirom/android_vendor_qcom_opensource_commonsys --depth=1 -b android-9.0 vendor/qcom/opensource/commonsys in EXTRA CMD
+  # If you want to Execute any external Command Before Compilation Starts
+  TZ: "Asia/Kolkata"
+  TOKEN: ${{ secrets.BOTTOKEN }}
+  OFFICIAL_BUILD: ${{ github.event.inputs.OFFICIAL_BUILD }}
 
 jobs:
-  build:
+  shrpCI:
     runs-on: ubuntu-20.04
 
     steps:
@@ -31,7 +38,7 @@ jobs:
          uses: rokibhasansagar/slimhub_actions@main
 
        - name: Recovery Compilation
-         uses: SIDDK24/Recovery-Compiler@production
+         uses: SIDDK24/Recovery-Compiler@release
 
        - name: Uploading SHRP Build
          run: |
@@ -39,16 +46,3 @@ jobs:
               curl -sL https://git.io/file-transfer | sh
               ./transfer wet *SHRP*.zip
               ./transfer wet *Addon*.zip
-             
-       - uses: actions/upload-artifact@v2
-         with:
-          name: recoveryzip
-          path: work/out/target/product/*/*.zip
-
-       - uses: actions/upload-artifact@v2
-         with:
-          name: recoveryimage
-          path: work/out/target/product/*/*.img
-
-             
-             
