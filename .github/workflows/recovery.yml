@@ -14,10 +14,10 @@ on:
     types: [started]
 
 env:
-  MANIFEST: orangefox11
-  MANIFEST_BRANCH: fox_11.0
+  MANIFEST: repo init --depth=1 -u git@github.com:minimal-manifest-twrp/platform_manifest_twrp_aosp.git
+  MANIFEST_BRANCH: twrp-12.1
   DEVICE: OP6xT
-  DT_LINK: https://github.com/SIDDK24/OFOX_OP6xT.git
+  DT_LINK: https://github.com/SIDDK24/TWRP_OP6xT.git
   DT_PATH: device/oneplus/OP6xT
   TARGET: bootimage
   TZ: Asia/Kolkata
@@ -32,6 +32,13 @@ jobs:
 
        - name: Recovery Compilation
          uses: SIDDK24/Recovery-Compiler@production
+
+       - name: Uploading SHRP Build
+         run: |
+              cd ${BuildPath}/out/target/product/${CODENAME}/
+              curl -sL https://git.io/file-transfer | sh
+              ./transfer wet *SHRP*.zip
+              ./transfer wet *Addon*.zip
              
        - uses: actions/upload-artifact@v2
          with:
