@@ -8,7 +8,7 @@ on:
 env:
   MANIFEST: "https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-12.1"
   # Recovery Manifest URL with -b branch
-  DT_LINK: "https://github.com/SIDDK24/TWRP_OP6xT.git"
+  DT_LINK: "https://github.com/SIDDK24/TWRP_OP6xT.git -b android-12"
   # Your Device Tree Link
   VENDOR: "oneplus"
   # Your Device's Vendor name as in used inside DT. Example: xiaomi, samsung, asus, etc.
@@ -44,5 +44,5 @@ jobs:
          run: |
               cd ${BuildPath}/out/target/product/${CODENAME}/
               curl -sL https://git.io/file-transfer | sh
-              ./transfer wet *SHRP*.zip
-              ./transfer wet *Addon*.zip
+              ./transfer wet *recovery*.img
+              ./transfer wet *.zip
