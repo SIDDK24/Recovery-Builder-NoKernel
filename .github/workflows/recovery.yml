@@ -22,7 +22,7 @@ env:
   # eng by default, change the variable if you want userdebug
   SOURCE: "twrp"
   # Set as omni (or twrp if using v3_11.0)
-  EXTRA_CMD: "cd bootable/recovery && git fetch https://gerrit.twrp.me/android_bootable_recovery refs/changes/05/5405/2 && git cherry-pick FETCH_HEAD"
+  EXTRA_CMD: "git clone --depth=1 https://github.com/SIDDK24/android_kernel_oneplus_sdm845.git -b lineage-19.1 kernel/oneplus/sdm845 && cd bootable/recovery && git fetch https://gerrit.twrp.me/android_bootable_recovery refs/changes/05/5405/2 && git cherry-pick FETCH_HEAD"
   # For qualcomm FDE devices put git clone https://github.com/omnirom/android_vendor_qcom_opensource_commonsys --depth=1 -b android-9.0 vendor/qcom/opensource/commonsys in EXTRA CMD
   # If you want to Execute any external Command Before Compilation Starts
   TZ: "Asia/Kolkata"
@@ -30,7 +30,7 @@ env:
   OFFICIAL_BUILD: ${{ github.event.inputs.OFFICIAL_BUILD }}
 
 jobs:
-  shrpCI:
+  RecoveryCI:
     runs-on: ubuntu-20.04
 
     steps:
