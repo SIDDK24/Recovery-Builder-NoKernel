@@ -8,7 +8,7 @@ on:
 env:
   MANIFEST: "https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-11"
   # Recovery Manifest URL with -b branch
-  DT_LINK: "https://github.com/SIDDK24/TWRP_nabu.git"
+  DT_LINK: "https://github.com/SIDDK24/OFOX_nabu.git"
   # Your Device Tree Link
   VENDOR: "xiaomi"
   # Your Device's Vendor name as in used inside DT. Example: xiaomi, samsung, asus, etc.
