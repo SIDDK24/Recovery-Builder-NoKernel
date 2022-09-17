@@ -6,13 +6,13 @@ on:
         description: 'set true if you wanna push Official Build'
         required: false
 env:
-  MANIFEST: "https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-11"
+  MANIFEST: "https://github.com/PitchBlackRecoveryProject/manifest_pb -b android-12.1"
   # Recovery Manifest URL with -b branch
-  DT_LINK: "https://github.com/SIDDK24/OFOX_nabu.git"
+  DT_LINK: "https://github.com/SIDDK24/TWRP_enchilada.git -b Pbrp"
   # Your Device Tree Link
-  VENDOR: "xiaomi"
+  VENDOR: "oneplus"
   # Your Device's Vendor name as in used inside DT. Example: xiaomi, samsung, asus, etc.
-  CODENAME: "nabu"
+  CODENAME: "enchilada"
   # Your Device's Codename as in used inside DT." Example: nikel, phoenix, ginkgo, etc.
   KERNEL_LINK: ""
   # Kernel repo link with optional -b branch. Only for building kernel from source. Ignore if using prebuilt.
